@@ -1,5 +1,10 @@
 module FnordMetric::GaugeModifiers
 
+  def decr(gauge_name, value=1)
+    value = (0 - value) if value > 0
+    incr(gauge_name, value)
+  end
+
   def incr(gauge_name, value=1)
     value = value.to_i
     gauge = fetch_gauge(gauge_name)
